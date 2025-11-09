@@ -1,9 +1,11 @@
 # Preferred name mappings for privacy-friendly display
 PREFERRED_NAMES = {
     "Alexander": "Alex",
+    "Ann-Tarah": "Annie",
     "Finnegan": "Finn", 
     "Jonathan": "Julian",
-    "Nicolas": "Nico"
+    "Nicolas": "Nico",
+    "Shiyang": "April"
 }
 
 # Special case for Michael H (since there might be other Michaels)

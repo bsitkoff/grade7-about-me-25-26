@@ -142,25 +142,23 @@
 <body>
     <h1>{{ site_title }}</h1>
     
-    {% set total_students = 0 %}
-    {% set working_links = 0 %}
-    {% set missing_pages = 0 %}
+    {% set ns = namespace(total_students=0, working_links=0, missing_pages=0) %}
     
     {% for section_name, students in sections %}
-        {% set total_students = total_students + students|length %}
+        {% set ns.total_students = ns.total_students + students|length %}
         
         <div class="section">
             <h2>Section {{ section_name }}</h2>
             <div class="student-grid">
                 {% for student in students %}
                     {% if student.entry_page_file %}
-                        {% set working_links = working_links + 1 %}
+                        {% set ns.working_links = ns.working_links + 1 %}
                         <a href="{{ pages_base_url }}/{{ student.section }}/{{ student.slug }}/{{ student.entry_page_file }}" 
                            class="student-link" target="_blank">
                             {{ student.display_name_short }}
                         </a>
                     {% else %}
-                        {% set missing_pages = missing_pages + 1 %}
+                        {% set ns.missing_pages = ns.missing_pages + 1 %}
                         <span class="student-missing">
                             {{ student.display_name_short }}<br>
                             <small>Missing index</small>
@@ -181,16 +179,16 @@
     <div class="stats">
         <h3>Project Statistics</h3>
         <div class="stat-item">
-            <span class="stat-number">{{ total_students }}</span>
+            <span class="stat-number">{{ ns.total_students }}</span>
             <span class="stat-label">Total Students</span>
         </div>
         <div class="stat-item">
-            <span class="stat-number">{{ working_links }}</span>
+            <span class="stat-number">{{ ns.working_links }}</span>
             <span class="stat-label">Working Projects</span>
         </div>
-        {% if missing_pages > 0 %}
+        {% if ns.missing_pages > 0 %}
         <div class="stat-item">
-            <span class="stat-number">{{ missing_pages }}</span>
+            <span class="stat-number">{{ ns.missing_pages }}</span>
             <span class="stat-label">Missing Pages</span>
         </div>
         {% endif %}
