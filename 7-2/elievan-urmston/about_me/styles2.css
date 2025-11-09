@@ -1,0 +1,25 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #3c7bb2; 
+    color: #ff1919; 
+    line-height: 1.6; 
+    background-color: #ffb969; 
+    font-family: "Comic Sans MS", cursive; 
+    color: #008000; 
+    margin: 20px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="20">😀</text>😀</svg>');
+    background-size: 100px 100px;
+}
+
+h1 {
+    color: #00ffe1; 
+    text-align: center;
+    font-size: 48px;
+    text-shadow: 3px 3px 0px #0095ff;  
+    animation: blink 1s infinite;  
+}/
+    @keyframes blink {
+     0% {opacity: 1;}
+    50% {opacity: 0;}
+    100% {opacity: 1;}
+}

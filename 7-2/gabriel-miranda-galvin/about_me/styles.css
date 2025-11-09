@@ -1,0 +1,24 @@
+body {
+    font-family: 'cursive', Courier, monospace;
+    background-color: blanchedalmond; 
+    color: rgb(120, 97, 66); 
+    line-height: 1.6; 
+    text-align: center;
+}
+h2   {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+}
+ul   {
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.5;
+    text-align: left;
+}
+p    {
+    font-family:'Courier New', Courier, monospace;
+    text-align: left;
+}
+a    {
+    text-align: left;
+
+}

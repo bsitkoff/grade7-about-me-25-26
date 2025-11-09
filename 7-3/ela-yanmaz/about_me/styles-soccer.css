@@ -1,0 +1,20 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: skyblue;
+    color: white; 
+    line-height: 1.6; 
+}
+h1 {text-align: center;
+color:azure;
+font-size: 40px;
+font-family: 'Lexend', Georgia;
+}
+p1 { color: white(255, 68, 0);
+font-size: 20px;
+font-family: 'Lexend', Courier New;
+}
+
+p2{ color: darkblue;
+font-size: 20px;
+font-family: 'Lexend', Courier New;
+}

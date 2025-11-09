@@ -1,0 +1,16 @@
+body {
+    background-color: #fccdf8; 
+    font-family: "Comic Sans MS", cursive; 
+    color: #08feee;
+    margin: 20px;
+    background-size: 100px 100px;
+}
+.container {
+    display: flex;
+    gap: 2px;
+}
+.box {
+    border: 2px solid black;
+    padding: 15px;
+    width: 50%;
+}

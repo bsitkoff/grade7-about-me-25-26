@@ -1,0 +1,41 @@
+body {
+    color: #000000; 
+    font-family: 'Lucida Console', sans-serif;
+    background-color: hsl(281, 100%, 95%);                          
+    line-height: 1.6; 
+
+h2 {
+    text-align: center;
+}
+
+h1 {
+    text-align: center
+}
+
+.container {
+    display: flex;
+}
+
+.box {
+    color: #000000; 
+    background-color: #fffff2;
+    width: 50%;
+}
+
+a:hover {
+    color: #0000ff;
+}
+
+a {
+  color: #000000;
+}
+img {
+    width:400px    
+}
+.hi {
+    padding: 15px;
+}
+
+.intro {
+    text-align: center
+}

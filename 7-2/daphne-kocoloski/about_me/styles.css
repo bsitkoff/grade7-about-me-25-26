@@ -1,0 +1,22 @@
+body {
+    font-family: 'cursive', fantasy;
+    background-color: #0150a4a1; 
+    color: #fffefe; 
+    line-height: 1;
+    
+    text-align: left;
+
+
+  
+}
+
+h1 {
+    text-align: center;
+}
+p  {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}

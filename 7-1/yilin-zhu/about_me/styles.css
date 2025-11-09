@@ -1,0 +1,31 @@
+body {
+    font-family: "Comic Sans MS", sans-serif;
+    background-color: #ff94a8; 
+    color: #fddfdf; 
+    line-height: 0.6;
+    font-size: 63px;
+    
+
+}
+h8{
+font-size: 20px;
+color: rgb(255, 255, 255);
+
+
+}
+h2{
+font-size: 40px;
+color: rgb(233, 65, 160);
+}
+p{
+   text-shadow: 3px 3px 1px rgb(166, 67, 77);
+    font-size: 43px;
+    color: rgb(242, 83, 110)
+}
+li{
+    font-size:20px;
+    line-height: 25px;
+}
+img {
+  width: 200px;
+}

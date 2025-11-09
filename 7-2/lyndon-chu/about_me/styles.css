@@ -1,0 +1,17 @@
+h1{
+    text-align: center;
+}
+
+h2{
+    text-align: center;                           
+}
+
+
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #518bbe; 
+    color: hsla(22, 100%, 55%, 0.949); 
+    line-height: 1.6; 
+}

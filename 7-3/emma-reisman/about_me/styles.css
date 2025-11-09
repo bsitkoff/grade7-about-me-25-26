@@ -1,0 +1,34 @@
+h1 {
+    font-family: 'Comic Sans MS', sans-serif;
+    background-color: #f5c9e7; 
+    color: #a1bef4; 
+    font-size: 40px;
+    line-height: 1.6; 
+    text-align: center;
+
+}
+body {
+    font-family: 'Comic Sans MS', sans-serif;
+    background-color: #f5c9e7; 
+    color: #a1bef4; 
+    font-size: 28px;
+    line-height: 1.6; 
+    text-align: center;
+}
+h2 {
+    font-family: 'Comic Sans MS', sans-serif;
+    background-color: #f5c9e7; 
+    color: #ffffff; 
+    font-size: 24px;
+    line-height: 1.6; 
+    text-align: left;
+}
+
+p {
+    font-family: 'Comic Sans MS', sans-serif;
+    background-color: #f5c9e7; 
+    color: #ffffff; 
+    font-size: 20px;
+    line-height: 1.6; 
+    text-align: left;
+    }

@@ -1,0 +1,16 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff; 
+    color: #333; 
+    line-height: 1.6; 
+}
+h1 {text-align: center;
+color:darkorchid;
+font-size: 40px;
+font-family: 'Lexend', Georgia;
+}
+p { color:rgb(255, 68, 0);
+font-size: 20px;
+font-family: 'Lexend', Courier New;
+}
+p

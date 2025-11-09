@@ -1,0 +1,36 @@
+body {
+    font-family: 'Times New Roman', cursive;
+    background-color: rgb(0, 255, 229); 
+    color: #333; 
+    line-height: 1.6; 
+    
+h1 {
+  font-size: 48px;
+  color: black;
+  text-align: center;
+}
+
+
+h2 {
+  font-size: 32px;
+  color: black;
+  text-align: left;
+} 
+
+h3 {
+  font-size: 20px;
+  color: rgb(23, 27, 134);
+  text-align: left;
+} 
+
+ol {
+  font-size: 20px;
+  color: black;
+  text-align: left;
+} 
+
+img {
+  display: block;
+  margin: auto;
+  width: 70%;
+}

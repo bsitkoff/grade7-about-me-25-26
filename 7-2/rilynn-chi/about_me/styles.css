@@ -1,0 +1,18 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #c7e2fa; 
+    color: #7f7f7f; 
+    line-height: 1.6; 
+}
+h1 {
+    font-family: 'Times New Roman', Times, serif
+    line-spacing: 1.5;
+    text-align: center;
+    color: darkblue;
+}
+h3 {
+    text-align: center;
+}
+p{
+
+}
