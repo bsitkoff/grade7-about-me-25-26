@@ -1,0 +1,105 @@
+#!/bin/bash
+#
+# Grade 7 About Me Project Publisher (25-26)
+# 
+# Simple wrapper script to run the About Me project publisher with the correct
+# environment and configuration.
+#
+# Usage:
+#   ./bin/publish_about_me_25_26 all              # Download, build, publish, and validate
+#   ./bin/publish_about_me_25_26 download         # Download projects only
+#   ./bin/publish_about_me_25_26 build            # Build site only  
+#   ./bin/publish_about_me_25_26 publish          # Publish to GitHub Pages only
+#   ./bin/publish_about_me_25_26 validate         # Validate deployed site only
+#
+
+set -e  # Exit on any error
+
+# Get the script directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# Change to project directory
+cd "$PROJECT_ROOT"
+
+# Check if virtual environment exists
+if [ ! -d ".venv" ]; then
+    echo "Error: Virtual environment not found. Run setup first:"
+    echo "  python3 -m venv .venv"
+    echo "  source .venv/bin/activate" 
+    echo "  pip install -r requirements.txt"
+    exit 1
+fi
+
+# Activate virtual environment
+source .venv/bin/activate
+
+# Check environment variables
+if [ -z "$CODIO_CLIENT_ID" ] || [ -z "$CODIO_CLIENT_SECRET" ]; then
+    echo "Error: Required environment variables not set:"
+    echo "  export CODIO_CLIENT_ID=your_client_id"
+    echo "  export CODIO_CLIENT_SECRET=your_client_secret"
+    exit 1
+fi
+
+# Check GitHub CLI authentication
+if ! gh auth status >/dev/null 2>&1; then
+    echo "Error: GitHub CLI not authenticated. Run: gh auth login"
+    exit 1
+fi
+
+# Check for zstd (required for Codio archive extraction)
+if ! command -v zstd >/dev/null 2>&1; then
+    echo "Error: zstd not found. Install with: brew install zstd"
+    exit 1
+fi
+
+# Default to 'all' if no command specified
+COMMAND="${1:-all}"
+
+# Valid commands
+case "$COMMAND" in
+    all|download|build|publish|validate)
+        ;;
+    *)
+        echo "Usage: $0 {all|download|build|publish|validate}"
+        echo ""
+        echo "Commands:"
+        echo "  all       - Complete pipeline: download → build → publish → validate"
+        echo "  download  - Download student projects from Codio"
+        echo "  build     - Build static site from downloaded projects"
+        echo "  publish   - Publish site to GitHub Pages"
+        echo "  validate  - Validate deployed site links"
+        exit 1
+        ;;
+esac
+
+# Configuration file
+CONFIG_FILE="config/about_me_25_26.yaml"
+
+if [ ! -f "$CONFIG_FILE" ]; then
+    echo "Error: Configuration file not found: $CONFIG_FILE"
+    exit 1
+fi
+
+echo "=========================================="
+echo "7th Grade About Me Publisher (25-26)"
+echo "=========================================="
+echo "Command: $COMMAND"
+echo "Config:  $CONFIG_FILE"
+echo "Project: $PROJECT_ROOT"
+echo "=========================================="
+echo ""
+
+# Run the publisher
+python scripts/publish_about_me.py --config "$CONFIG_FILE" "$COMMAND"
+
+echo ""
+echo "=========================================="
+echo "Pipeline completed successfully!"
+
+if [ "$COMMAND" = "all" ] || [ "$COMMAND" = "publish" ]; then
+    echo "Site URL: https://bsitkoff.github.io/grade7-about-me-25-26"
+fi
+
+echo "=========================================="

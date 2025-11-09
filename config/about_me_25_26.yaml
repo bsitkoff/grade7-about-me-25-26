@@ -1,0 +1,46 @@
+school_year: "25-26"
+site_title: "7th Grade About Me 25-26"
+assignment_name: "About Me"
+
+# Section mapping to Codio course IDs
+sections:
+  "7-1": "bb9fa50f1988a7f3a11e0e138fb94338"
+  "7-2": "67596d42d3ce88a6e0f57f980f4cb0a4" 
+  "7-3": "3f7d6ad7eeb9445c3ea56d5b697b3fae"
+  "7-4": "37ae1d138ec708fc4167dc761f0773bd"
+
+# GitHub Pages configuration
+github:
+  owner: "bsitkoff"
+  repo: "grade7-about-me-25-26"
+  branch: "gh-pages"
+
+pages_base_url: "https://bsitkoff.github.io/grade7-about-me-25-26"
+
+# Directory structure
+output_dir: "site"
+build_dir: "build"
+
+# Student display configuration
+display_name_format: "first_last_initial"  # Display as "First L"
+slug_strategy: "codio_username"             # Use Codio username for folder names
+
+# File exclusions during download
+exclude_globs:
+  - ".git"
+  - ".guides" 
+  - ".codio"
+  - "__pycache__"
+  - ".venv"
+  - "node_modules"
+  - "*.pyc"
+  - ".DS_Store"
+
+# Performance settings
+max_concurrency: 8
+
+# Timeout settings (seconds)
+timeouts:
+  api_seconds: 30
+  download_seconds: 120
+  http_seconds: 20
