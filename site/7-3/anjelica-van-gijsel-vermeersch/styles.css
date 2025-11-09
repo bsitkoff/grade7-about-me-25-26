@@ -1,0 +1,16 @@
+body {
+    font-family: 'Comic Sans MS', sans-serif;
+    background-color: #ecbdfa; 
+    color: #f2f2fa; 
+    line-height: 1; 
+}
+h1{
+    text-align: center;
+    }
+    
+h4{
+    text-align: center;
+}
+img{
+    width: 300px;
+}

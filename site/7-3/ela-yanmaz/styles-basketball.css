@@ -1,0 +1,16 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color:lightsalmon ; 
+    color: green(246, 246, 246) ; 
+    line-height: 1.6; 
+}
+h1 {text-align: center;
+color:rgb(94, 3, 3);
+font-size: 40px;
+font-family: 'Lexend', Georgia;
+}
+p { color: green(255, 68, 0);
+font-size: 20px;
+font-family: 'Georgia', Monospace;
+}
+p

@@ -153,9 +153,9 @@
             <h2>Section {{ section_name }}</h2>
             <div class="student-grid">
                 {% for student in students %}
-                    {% if student.entry_page %}
+                    {% if student.entry_page_file %}
                         {% set working_links = working_links + 1 %}
-                        <a href="{{ pages_base_url }}/{{ student.section }}/{{ student.slug }}/{{ student.entry_page }}" 
+                        <a href="{{ pages_base_url }}/{{ student.section }}/{{ student.slug }}/{{ student.entry_page_file }}" 
                            class="student-link" target="_blank">
                             {{ student.display_name_short }}
                         </a>
@@ -171,8 +171,8 @@
             
             <p style="color: #7f8c8d; margin-top: 15px; font-size: 0.9em;">
                 {{ students|length }} students
-                {% if students|selectattr("entry_page", "none")|list|length > 0 %}
-                    • {{ students|selectattr("entry_page", "none")|list|length }} missing index pages
+                {% if students|selectattr("entry_page_file", "none")|list|length > 0 %}
+                    • {{ students|selectattr("entry_page_file", "none")|list|length }} missing index pages
                 {% endif %}
             </p>
         </div>

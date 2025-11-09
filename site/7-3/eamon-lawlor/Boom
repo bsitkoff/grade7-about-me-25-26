@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <p>
+    <h1>My life</h1>
+    </p>
+
+    <p>
+    <h2>Photos</h2>
+    </p>
+
+    <p>
+    <h3> Heres a pic of My Drive back from a BBN game this year</h3>
+      <img src="IMG_3887.JPEG" width=400  alt="Looking out from the bridge"> 
+
+    
+    </p>
+
+
+    <p>
+    <h4>This is just one of the many, many photos I have taken. The importance of photos to me personally, I think is from the ability to capture beatiful moments Like this
+.<img src="image.jpg" alt="Description of Image">
+    </h4>
+
+    <p>
+    <h5>
+    Go to my next page for the full thing.
+    </h5>
+
+    </p>
+    <a href="index.html">Go to About Page</a>
+
+
+
+</body>
+</html>

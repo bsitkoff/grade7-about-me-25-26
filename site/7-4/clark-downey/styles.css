@@ -1,0 +1,19 @@
+body {
+    font-family: "Times New Roman";
+    background-color: #c9c9ee;
+    color:#000000; 
+    line-height: 1.8; 
+   style="font-size: 24px;"
+}
+
+ h1 {
+    color: rgb(0, 0, 0);
+    font-size: 36px;
+    text-align: center;
+    
+} 
+
+p{
+    max-width: 50%;
+}
+

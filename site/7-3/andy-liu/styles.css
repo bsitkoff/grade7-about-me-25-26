@@ -1,0 +1,29 @@
+body {
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 22px;
+    background-color: #ffffff; 
+    line-height: 1; 
+    background-color:rgb(23, 248, 248);
+}
+h1   {
+    color: rgb(46, 0, 253);
+    font-size: 36px;
+    text-align: center;
+    text-shadow: 2px 2px 0px blue;
+}
+
+h2   {
+    font-size: 29px;
+    text-align: left;
+    color: blue;
+}
+
+ul   {
+    line-height: 1;
+    color:rgb(243, 94, 40);
+}
+
+img  {
+    width: 550px;
+    length: 500px;
+}

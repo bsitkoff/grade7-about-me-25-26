@@ -175,19 +175,41 @@ def parse_display_name(full_name: str) -> str:
     return f"{first} {last_initial}" if last_initial else first
 
 
-def find_entry_page(project_dir: Path) -> Optional[str]:
-    """Find the main entry page (index.html) in a project directory"""
-    # Case-insensitive search for index.html
-    for pattern in ['index.html', 'Index.html', 'INDEX.HTML', 'index.htm', 'Index.htm']:
-        entry_file = project_dir / pattern
-        if entry_file.exists() and entry_file.is_file():
-            return pattern
+def find_entry_page(project_dir: Path) -> Optional[Tuple[str, str]]:
+    """Find the main entry page (index.html) in a project directory or subdirectories
+    Returns (relative_path, filename) or None if not found
+    """
+    # Search patterns for main page
+    patterns = ['index.html', 'Index.html', 'INDEX.HTML', 'index.htm', 'Index.htm']
+    fallback_patterns = ['home.html', 'start.html', 'main.html']
     
-    # Fallback patterns
-    for pattern in ['home.html', 'start.html', 'main.html']:
+    # First check the root directory
+    for pattern in patterns:
         entry_file = project_dir / pattern
         if entry_file.exists() and entry_file.is_file():
-            return pattern
+            return ("", pattern)  # Empty path means root
+    
+    # Then search subdirectories (up to 2 levels deep)
+    for subdir in project_dir.iterdir():
+        if subdir.is_dir() and not subdir.name.startswith('.'):
+            for pattern in patterns:
+                entry_file = subdir / pattern
+                if entry_file.exists() and entry_file.is_file():
+                    return (subdir.name, pattern)
+            
+            # Check one level deeper
+            for subsubdir in subdir.iterdir():
+                if subsubdir.is_dir() and not subsubdir.name.startswith('.'):
+                    for pattern in patterns:
+                        entry_file = subsubdir / pattern
+                        if entry_file.exists() and entry_file.is_file():
+                            return (f"{subdir.name}/{subsubdir.name}", pattern)
+    
+    # Fallback patterns in root only
+    for pattern in fallback_patterns:
+        entry_file = project_dir / pattern
+        if entry_file.exists() and entry_file.is_file():
+            return ("", pattern)
     
     return None
 
@@ -242,10 +264,16 @@ class AboutMeDownloader:
             )
             
             # Find entry page
-            entry_page = find_entry_page(student_dir)
+            entry_page_result = find_entry_page(student_dir)
             warnings = []
+            entry_page_path = None
+            entry_page_file = None
             
-            if not entry_page:
+            if entry_page_result:
+                entry_page_path, entry_page_file = entry_page_result
+                full_entry_path = f"{entry_page_path}/{entry_page_file}" if entry_page_path else entry_page_file
+                self.logger.debug(f"Found entry page for {student_name}: {full_entry_path}")
+            else:
                 warnings.append("No index.html or entry page found")
                 self.logger.warning(f"No entry page found for {student_name}")
             
@@ -258,7 +286,9 @@ class AboutMeDownloader:
                 'slug': student_slug,
                 'codio_id': student_id,
                 'local_path': str(student_dir.relative_to(self.config.project_root)),
-                'entry_page': entry_page,
+                'entry_page': full_entry_path if entry_page_result else None,
+                'entry_page_path': entry_page_path,
+                'entry_page_file': entry_page_file,
                 'warnings': warnings,
                 'download_timestamp': time.time()
             }
@@ -278,6 +308,8 @@ class AboutMeDownloader:
                 'codio_id': student_id,
                 'local_path': None,
                 'entry_page': None,
+                'entry_page_path': None,
+                'entry_page_file': None,
                 'warnings': [],
                 'errors': [error_msg],
                 'download_timestamp': time.time()
@@ -395,7 +427,21 @@ class SiteBuilder:
             
             if source_dir.exists():
                 dest_dir.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copytree(source_dir, dest_dir, dirs_exist_ok=True)
+                
+                # If there's an entry page in a subdirectory, copy from that subdirectory
+                # Otherwise copy the entire student directory
+                if student.get('entry_page_path') and student.get('entry_page_path') != '':
+                    # Copy from the subdirectory containing the project
+                    project_source = source_dir / student['entry_page_path']
+                    if project_source.exists():
+                        shutil.copytree(project_source, dest_dir, dirs_exist_ok=True)
+                        self.logger.debug(f"Copied project from {project_source} to {dest_dir}")
+                    else:
+                        # Fallback: copy entire directory
+                        shutil.copytree(source_dir, dest_dir, dirs_exist_ok=True)
+                else:
+                    # Copy entire directory (entry page is in root)
+                    shutil.copytree(source_dir, dest_dir, dirs_exist_ok=True)
     
     def build_index_page(self, manifest: List[Dict]) -> None:
         """Build the main index page"""
@@ -532,7 +578,7 @@ class SiteValidator:
         }
         
         for student in tqdm(manifest, desc="Validating links"):
-            if 'errors' in student or not student.get('entry_page'):
+            if 'errors' in student or not student.get('entry_page_file'):
                 validation_results['missing_entry'] += 1
                 validation_results['details'].append({
                     'student': student['display_name_short'],
@@ -546,7 +592,7 @@ class SiteValidator:
             # Build URL
             url = urljoin(
                 self.config.pages_base_url + '/',
-                f"{student['section']}/{student['slug']}/{student['entry_page']}"
+                f"{student['section']}/{student['slug']}/{student['entry_page_file']}"
             )
             
             validation_results['total'] += 1

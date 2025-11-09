@@ -1,0 +1,19 @@
+body {
+    background-color: black;
+    font-family: , sans-serif; 
+    color: #ff0000; 
+    line-height: 1.6; }
+   h1{ text-align:center;
+    color: red;
+    text-align: center;
+    font-size: 48px;
+    text-shadow: 3px 3px 0px purple;
+    animation: blink 1s infinite;}
+
+    h2{text-align: center;
+    color: blanchedalmond;
+    }
+
+img {
+  width: 300px;
+}

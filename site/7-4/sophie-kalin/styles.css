@@ -1,0 +1,16 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: lightblue; 
+    color:plum; 
+    line-height: 1.6; 
+}
+
+p{ 
+    color: darkorchid;
+}
+img{
+    width: 250px;
+}
+
+ul{
+    color: darkblue;
