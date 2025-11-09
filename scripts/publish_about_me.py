@@ -1,3 +1,43 @@
+# Preferred name mappings for privacy-friendly display
+PREFERRED_NAMES = {
+    "Alexander": "Alex",
+    "Finnegan": "Finn", 
+    "Jonathan": "Julian",
+    "Nicolas": "Nico"
+}
+
+# Special case for Michael H (since there might be other Michaels)
+SPECIAL_NAME_CASES = {
+    "Michael Holland": "Micky H",
+    "Michael H": "Micky H"  # Handle both full name and abbreviated forms
+}
+
+
+def parse_display_name(full_name: str) -> str:
+    """Parse full name into 'First LastInitial' format with preferred names for privacy"""
+    if not full_name or not full_name.strip():
+        return "Unknown Student"
+    
+    # Handle special cases first (full name matches)
+    if full_name.strip() in SPECIAL_NAME_CASES:
+        return SPECIAL_NAME_CASES[full_name.strip()]
+    
+    parts = full_name.strip().split()
+    
+    if len(parts) == 1:
+        # Use preferred name if available
+        first = PREFERRED_NAMES.get(parts[0], parts[0])
+        return first
+    
+    first = parts[0]
+    # Handle multi-part last names by taking the first letter of the final part
+    last_initial = parts[-1][0].upper() if parts[-1] else ""
+    
+    # Use preferred name if available
+    preferred_first = PREFERRED_NAMES.get(first, first)
+    
+    return f"{preferred_first} {last_initial}" if last_initial else preferred_first
+
 #!/usr/bin/env python3
 """
 About Me Project Publisher for Grade 7 (25-26)
@@ -158,21 +198,6 @@ def slugify(text: str) -> str:
     return text
 
 
-def parse_display_name(full_name: str) -> str:
-    """Parse full name into 'First LastInitial' format for privacy"""
-    if not full_name or not full_name.strip():
-        return "Unknown Student"
-    
-    parts = full_name.strip().split()
-    
-    if len(parts) == 1:
-        return parts[0]
-    
-    first = parts[0]
-    # Handle multi-part last names by taking the first letter of the final part
-    last_initial = parts[-1][0].upper() if parts[-1] else ""
-    
-    return f"{first} {last_initial}" if last_initial else first
 
 
 def find_entry_page(project_dir: Path) -> Optional[Tuple[str, str]]:
